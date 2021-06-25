@@ -1,7 +1,7 @@
 # vim
 My vim configuration
 # vim启动速度优化  
-'''vim  
+''' 
 vim --startuptime tmp.txt ~/.vimrc  
 '''  
 
