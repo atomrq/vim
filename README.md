@@ -4,6 +4,7 @@ My vim configuration
 '''vim  
 vim --startuptime tmp.txt ~/.vimrc  
 '''  
+
 注意'tmp.txt'为写入的log文件，~/.vimrc为打开的文件，顺序颠倒会导致打开的文件被覆盖。  
 # 功能快捷键  
 F5 行号  
