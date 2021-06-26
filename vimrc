@@ -43,7 +43,7 @@ nnoremap <F8> :set invpaste paste?<CR>
 set pastetoggle=<F8>
 
 cmap w!! w !sudo tee >/dev/null %
-noremap <silent><leader>/ :nohls<CR>
+noremap <silent><Space>/ :nohls<CR>
 
 set expandtab                   " tab=<Space>
 set tabstop=4                   " tab indent 4 space
