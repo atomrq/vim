@@ -25,3 +25,6 @@ vim --startuptime tmp.txt ~/.vimrc
 |`<leader>cc`| 行注释，来自`easymotion`插件|
 |`<leader>cu`| 行解注释，来自`easymotion`插件|
 |`w!!`       | 临时sudo保存|
+
+# 其他
+当前配置未加载语法，`syntax on`语句未写。
