@@ -12,4 +12,4 @@ vim --startuptime tmp.txt ~/.vimrc
 | F5       | 行号  |
 | F6       | 文件树  |
 | F8       | 粘贴模式|  
-|<leader>q | 保存退出| 
+|\<leader\>q | 保存退出| 
