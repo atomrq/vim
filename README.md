@@ -5,7 +5,7 @@ My vim configuration
 vim --startuptime tmp.txt ~/.vimrc  
 ```  
 注意`tmp.txt`为写入的log文件，`~/.vimrc`为打开的文件，顺序颠倒会导致打开的文件被覆盖。  
-# 功能快捷键   
+# key mappings   
 
 | 快捷键   | 功能 
 | ---------| ------------- |
@@ -25,5 +25,3 @@ vim --startuptime tmp.txt ~/.vimrc
 |`<leader>cc`| 行注释，来自`easymotion`插件|
 |`<leader>cu`| 行解注释，来自`easymotion`插件|
 |`w!!`       | 临时sudo保存|
-
-# 快速跳转
