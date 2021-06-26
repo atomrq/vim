@@ -35,9 +35,9 @@ set pastetoggle=<F8>
 cmap w!! w !sudo tee >/dev/null %
 noremap <silent><Space>/ :nohls<CR>
 
-set expandtab tabstop=4 shiftwidth=4 softtabstop=4 autoindent                
-set writebackup noswapfile undofile autoread nowrap
-set hlsearch showmatch ignorecase
+set expandtab tabstop=4 shiftwidth=4 softtabstop=4 autoindent "indent
+set writebackup noswapfile undofile autoread nowrap "edit
+set hlsearch showmatch ignorecase "search
 
 let g:lightline = {'colorscheme': 'wombat','active': {'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename', 'modified']]}}
 colorscheme space-vim-dark
