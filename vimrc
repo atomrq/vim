@@ -13,7 +13,7 @@ call plug#end()
 
 filetype plugin indent on
 set mouse= cursorline ruler showcmd backspace=2 t_Co=256 encoding=utf-8 laststatus=2
-autocmd Filetype xml dat if getfsize(@%) > 5000000 | setlocal syntax=OFF | endif
+autocmd Filetype xml if getfsize(@%) > 5000000 | setlocal syntax=OFF | endif
 
 let mapleader=","
 noremap  <Leader>z <c-z>
