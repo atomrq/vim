@@ -12,4 +12,5 @@ vim --startuptime tmp.txt ~/.vimrc
 | F5       | 行号  |
 | F6       | 文件树  |
 | F8       | 粘贴模式|  
-|\<leader\>q | 保存退出| 
+|`<leader>z` | 挂起`<C>z`| 
+|`<leader>q` | 保存退出`:wq<CR>` (or `:x<CR>`)| 
