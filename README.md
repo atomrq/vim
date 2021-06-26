@@ -20,3 +20,4 @@ vim --startuptime tmp.txt ~/.vimrc
 |`<leader>j` | 跳转`<c-w>j`|
 |`<leader>k` | 跳转`<c-w>k`|
 |`<leader>l` | 跳转`<c-w>l`|
+|`<leader>il`| 缩进标线，来自`Yggdroot/indentLine`插件|
