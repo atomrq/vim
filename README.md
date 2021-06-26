@@ -5,13 +5,11 @@ My vim configuration
 vim --startuptime tmp.txt ~/.vimrc  
 ```  
 注意`tmp.txt`为写入的log文件，`~/.vimrc`为打开的文件，顺序颠倒会导致打开的文件被覆盖。  
-# 功能快捷键  
-F5 行号  
-F6 文件树  
-F8 粘贴模式  
+# 功能快捷键   
 
 | 快捷键   | 功能 
 | ---------| ------------- |
 | F5       | 行号  |
 | F6       | 文件树  |
-| F8       | 粘贴|  
+| F8       | 粘贴模式|  
+|<leader>q | 保存退出| 
