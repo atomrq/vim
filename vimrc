@@ -15,18 +15,19 @@ filetype plugin indent on
 set mouse= cursorline ruler showcmd backspace=2 t_Co=256 encoding=utf-8 laststatus=2
 autocmd Filetype xml if getfsize(@%) > 5000000 | setlocal syntax=OFF | endif
 
-let mapleader=","
+let mapleader=" "
 noremap  <Leader>z <c-z>
-noremap  <Leader>q :x<CR>
+noremap  <Leader>x :x<CR>
 noremap  <Leader>a :w<CR>
-inoremap <Leader>w <Esc>
+imap     <Leader>s <Esc>
+
 nnoremap <Leader>h <c-w>h
 nnoremap <Leader>j <c-w>j
 nnoremap <Leader>k <c-w>k
 nnoremap <Leader>l <c-w>l
-nmap     <Leader>s <Plug>(easymotion-overwin-f2)
-map      <Leader>L <Plug>(easymotion-bd-jk)
-nmap     <Leader>L <Plug>(easymotion-overwin-line)
+nmap     <Leader>f <Plug>(easymotion-overwin-f2)
+map      <Leader>d <Plug>(easymotion-bd-jk)
+nmap     <Leader>d <Plug>(easymotion-overwin-line)
 
 nmap <F5> :set invnumber<CR>
 nnoremap <F8> :set invpaste paste?<CR>
