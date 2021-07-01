@@ -13,9 +13,9 @@ Plug 'dense-analysis/ale'
 call plug#end()
 
 filetype plugin indent on
-set mouse= cursorline ruler showcmd backspace=2 t_Co=256 encoding=utf-8 laststatus=2
 autocmd Filetype xml if getfsize(@%) > 1000000 | setlocal syntax=OFF | endif
 
+set mouse= cursorline ruler showcmd backspace=2 t_Co=256 encoding=utf-8 laststatus=2 "basic
 set expandtab tabstop=4 shiftwidth=4 softtabstop=4 autoindent "indent
 set writebackup noswapfile undofile autoread nowrap "edit
 set hlsearch showmatch ignorecase "search
