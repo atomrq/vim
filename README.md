@@ -24,4 +24,4 @@ vim --startuptime tmp.txt ~/.vimrc
 
 # 其他
 当前配置未加载语法，`syntax on`语句未写。
----
+---------
