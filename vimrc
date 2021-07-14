@@ -1,4 +1,4 @@
-set clipboard=exclude:.* "speed vim startup" 
+set clipboard=exclude:.* "speed vim startup"
 set nocompatible
 call plug#begin('~/.vim/plugged')
 Plug 'easymotion/vim-easymotion'
@@ -10,6 +10,7 @@ Plug 'itchyny/lightline.vim'
 Plug 'dstein64/vim-startuptime'
 Plug 'liuchengxu/vim-which-key'
 Plug 'dense-analysis/ale'
+Plug 'liuchengxu/space-vim-dark'
 call plug#end()
 
 filetype plugin indent on
@@ -19,7 +20,7 @@ set mouse= cursorline ruler showcmd backspace=2 t_Co=256 encoding=utf-8 laststat
 set expandtab tabstop=4 shiftwidth=4 softtabstop=4 autoindent "indent
 set writebackup noswapfile undofile autoread nowrap "edit
 set hlsearch showmatch ignorecase "search
-set timeoutlen=300 "trigger time
+set timeoutlen=200 "trigger time
 
 let g:mapleader = "\<Space>"
 nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
@@ -30,18 +31,19 @@ let g:which_key = {
         \'n' : [':set invnumber', 'linenumber'],
         \'/' : [':let @/ = ""', 'clear search'],
         \'p' : [':set invpaste paste?', 'paste'],
-        \'l' : {
-                \'name' : '+mysettings'                      ,
-                \'z' : ['<c-z>'          , 'append']         ,
-                \'x' : [':x'         , 'save and exit']  ,
-                \'w' : [':w'    , 'save']           ,
-                \'q' : [':q'    , 'exit']           ,
-                \'/' : ['<Leader>/'      , 'cancel highlight']           ,
-                \'v' : {
-                        \ 'name' : '+vimrc'                         , 
-                        \ 'v' :  [':e $MYVIMRC',   'open-vimrc']    ,
-                        \ 'r' :  [':source $MYVIMRC',   'source-vimrc'],
-                    \},
+        \'z' : ['<c-z>', 'append'],
+        \'s' : [':w', 'save'],
+        \'x' : [':x', 'save and exit'],
+        \'q' : [':q', 'exit'],
+        \'l' : ['<c-w>l', 'window-right'],
+        \'h' : ['<c-w>h', 'window-left'],
+        \'j' : ['<c-w>j', 'window-below'],
+        \'k' : ['<c-w>k', 'window-up'],
+        \'<Leader>' : ['<Esc>', 'Esc'],
+        \'v' : {
+            \ 'name' : '+vimrc'                         ,
+            \ 'v' :  [':e $MYVIMRC',   'open-vimrc']    ,
+            \ 'r' :  [':source $MYVIMRC',   'source-vimrc'],
             \},
         \'f' : {'name' : '+search',
                 \ 'f'  : ['<Plug>(easymotion-overwin-f2)', 'easymotion-f2)'],
@@ -51,10 +53,6 @@ let g:which_key = {
                 \ 'w' : ['<C-W>w'     , 'other-window']          ,
                 \ 'd' : ['<C-W>c'     , 'delete-window']         ,
                 \ '2' : ['<C-W>v'     , 'layout-double-columns'] ,
-                \ 'h' : ['<C-W>h'     , 'window-left']           ,
-                \ 'j' : ['<C-W>j'     , 'window-below']          ,
-                \ 'l' : ['<C-W>l'     , 'window-right']          ,
-                \ 'k' : ['<C-W>k'     , 'window-up']             ,
                 \ 'H' : ['<C-W>5<'    , 'expand-window-left']    ,
                 \ 'J' : [':resize +5'  , 'expand-window-below']   ,
                 \ 'L' : ['<C-W>5>'    , 'expand-window-right']   ,
@@ -67,7 +65,10 @@ let g:which_key = {
 
 let g:lightline = {'colorscheme': 'wombat','active': {'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename', 'modified']]}}
 colorscheme space-vim-dark
-hi Comment guifg=#5C6370 ctermfg=59 "Comment grey color"
+hi Comment guifg=#5C6370 ctermfg=59 "Comment grey color
+"hi Normal     ctermbg=NONE guibg=NONE
+"hi LineNr     ctermbg=NONE guibg=NONE
+"hi SignColumn ctermbg=NONE guibg=NONE
 
 let g:ycm_disable_for_files_larger_than_kb = 2000 "Youcompleteme
 let g:ycm_key_detailed_diagnostics = ''
@@ -76,7 +77,7 @@ highlight PMenuSel ctermfg=242 ctermbg=8 guifg=darkgrey guibg=black
 
 "nnoremap <Leader>ts :ALEToggle<CR>
 let g:ale_linters = {'python': ['flake8', 'pylint']}
-let g:ale_python_flake8_options = '--ignore=E501,W291,W391,N806,F405,F841'
+let g:ale_python_flake8_options = '--ignore=E501,E126,W291,W391,N806,F405,F841'
 let g:ale_python_pylint_options = '--disable=C0411, C0301, C0114'
 let g:ale_set_highlights = 0
 let g:ale_echo_msg_format = '[%linter%-%code%] %s [%severity%]'
