@@ -5,10 +5,8 @@
 
 # Table of contents
 - [A fast and robust Vim setup](#a-fast-and-robust-vim-setup)
-- [Table of contents](#table-of-contents)
 - [Checklist](#checklist)
 - [Installation](#installation)
-
 # Checklist
 + Vim 8.0 or higher version is required.
 + The youcompleteme plugin should be compiled with python support.
