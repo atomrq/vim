@@ -1,7 +1,6 @@
 set clipboard=exclude:.* "speed vim startup"
 set nocompatible
 call plug#begin('~/.vim/plugged')
-Plug 'easymotion/vim-easymotion'
 Plug 'Yggdroot/indentLine'
 Plug 'Valloric/YouCompleteMe'
 Plug 'scrooloose/nerdcommenter'
@@ -9,8 +8,8 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'itchyny/lightline.vim'
 Plug 'dstein64/vim-startuptime'
 Plug 'liuchengxu/vim-which-key'
-Plug 'dense-analysis/ale'
 Plug 'liuchengxu/space-vim-dark'
+Plug 'Chiel92/vim-autoformat'
 call plug#end()
 
 filetype plugin indent on
@@ -18,67 +17,43 @@ autocmd Filetype xml if getfsize(@%) > 1000000 | setlocal syntax=OFF | endif
 
 set mouse= cursorline ruler showcmd backspace=2 t_Co=256 encoding=utf-8 laststatus=2 "basic
 set expandtab tabstop=4 shiftwidth=4 softtabstop=4 autoindent "indent
-set writebackup noswapfile undofile autoread nowrap "edit
+set nobackup autoread nowrap noswapfile "edit
 set hlsearch showmatch ignorecase "search
-set timeoutlen=200 "trigger time
+set timeoutlen=800 "trigger time
+set undofile undodir=$HOME/.dotfiles/vim/.vimundo
+set shm+=I "close the startup window
 
-let g:mapleader = "\<Space>"
-nnoremap <silent> <leader> :<c-u>WhichKey '<Space>'<CR>
-vnoremap <silent> <leader> :<c-u>WhichKeyVisual '<Space>'<CR>
-
-call which_key#register('<Space>', "g:which_key")
-let g:which_key = {
-        \'n' : [':set invnumber', 'linenumber'],
-        \'/' : [':let @/ = ""', 'clear search'],
-        \'p' : [':set invpaste paste?', 'paste'],
-        \'z' : ['<c-z>', 'append'],
-        \'s' : [':w', 'save'],
-        \'x' : [':x', 'save and exit'],
-        \'q' : [':q', 'exit'],
-        \'l' : ['<c-w>l', 'window-right'],
-        \'h' : ['<c-w>h', 'window-left'],
-        \'j' : ['<c-w>j', 'window-below'],
-        \'k' : ['<c-w>k', 'window-up'],
-        \'<Leader>' : ['<Esc>', 'Esc'],
-        \'v' : {
-            \ 'name' : '+vimrc'                         ,
-            \ 'v' :  [':e $MYVIMRC',   'open-vimrc']    ,
-            \ 'r' :  [':source $MYVIMRC',   'source-vimrc'],
-            \},
-        \'f' : {'name' : '+search',
-                \ 'f'  : ['<Plug>(easymotion-overwin-f2)', 'easymotion-f2)'],
-                \ 'd'  : ['<Plug>(easymotion-overwin-line)', 'easymotion-line'],
-            \},
-        \'w' : {'name' : '+windows' ,
-                \ 'w' : ['<C-W>w'     , 'other-window']          ,
-                \ 'd' : ['<C-W>c'     , 'delete-window']         ,
-                \ '2' : ['<C-W>v'     , 'layout-double-columns'] ,
-                \ 'H' : ['<C-W>5<'    , 'expand-window-left']    ,
-                \ 'J' : [':resize +5'  , 'expand-window-below']   ,
-                \ 'L' : ['<C-W>5>'    , 'expand-window-right']   ,
-                \ 'K' : [':resize -5'  , 'expand-window-up']      ,
-                \ '=' : ['<C-W>='     , 'balance-window']        ,
-                \ 's' : ['<C-W>s'     , 'split-window-below']    ,
-                \ 'v' : ['<C-W>v'     , 'split-window-right']    ,
-            \},
-        \}
+let g:mapleader = " "
+nmap <Leader>j <c-w>j
+nmap <Leader>k <c-w>k
+nmap <Leader>h <c-w>h
+nmap <Leader>l <c-w>l
+nmap <Leader>w <c-w>w
+nmap <Leader>n :set invnumber <CR>
+nmap <Leader>p :set invpaste <CR>
+nmap <Leader>z <c-z>
+nmap <Leader>s :w <CR>
+nmap <Leader>x :x <CR>
+nmap <Leader>q :q <CR>
+nmap <Leader>; :AutoformatLine <CR>
+noremap <silent><Leader>/ :nohls<CR>
 
 let g:lightline = {'colorscheme': 'wombat','active': {'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename', 'modified']]}}
 colorscheme space-vim-dark
-hi Comment guifg=#5C6370 ctermfg=59 "Comment grey color
+hi Comment guifg=#5C6370 ctermfg=59
 "hi Normal     ctermbg=NONE guibg=NONE
 "hi LineNr     ctermbg=NONE guibg=NONE
 "hi SignColumn ctermbg=NONE guibg=NONE
 
-let g:ycm_disable_for_files_larger_than_kb = 2000 "Youcompleteme
+let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
+let g:ycm_confirm_extra_conf=0
+let g:ycm_disable_for_files_larger_than_kb = 1000
 let g:ycm_key_detailed_diagnostics = ''
+set completeopt=menu,menuone
+let g:ycm_min_num_identifier_candidate_chars = 2
+let g:ycm_collect_identifiers_from_comments_and_strings = 1
+let g:ycm_complete_in_strings=1
+let g:ycm_add_preview_to_completeopt = 0
+let g:ycm_show_diagnostics_ui = 0
 highlight PMenu ctermfg=0 ctermbg=242 guifg=black guibg=darkgrey
 highlight PMenuSel ctermfg=242 ctermbg=8 guifg=darkgrey guibg=black
-
-"nnoremap <Leader>ts :ALEToggle<CR>
-let g:ale_linters = {'python': ['flake8', 'pylint']}
-let g:ale_python_flake8_options = '--ignore=E501,E126,W291,W391,N806,F405,F841'
-let g:ale_python_pylint_options = '--disable=C0411, C0301, C0114'
-let g:ale_set_highlights = 0
-let g:ale_echo_msg_format = '[%linter%-%code%] %s [%severity%]'
-let b:ale_warn_about_trailing_whitespace = 0
