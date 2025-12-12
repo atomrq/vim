@@ -5,7 +5,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'itchyny/lightline.vim'
 Plug 'liuchengxu/space-vim-dark'
 Plug 'scrooloose/nerdcommenter', {'keys': ['<Leader>cc', '<Leader>cu']}
-Plug 'Yggdroot/leaderF'
 Plug 'Yggdroot/LeaderF', {'do': ':LeaderfInstallCExtension'}
 call plug#end()
 
