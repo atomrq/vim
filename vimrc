@@ -25,7 +25,10 @@ set hlsearch incsearch smartcase showmatch ignorecase timeoutlen=800
 set shm+=I "close the startup window
 
 "undo, and you can undo even file reopen
-set undofile undodir=$HOME/.dotfiles/vim/vimundo
+set undofile
+let s:ud = $HOME . '/.dotfiles/vim/vimundo'
+silent! call mkdir(s:ud, 'p')
+execute 'set undodir=' . s:ud
 
 let g:mapleader = " "
 nnoremap <Leader>j <c-w>j
