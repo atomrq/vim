@@ -1,59 +1,73 @@
 set clipboard=exclude:.* "speed vim startup"
 set nocompatible
 call plug#begin('~/.vim/plugged')
-Plug 'Yggdroot/indentLine'
-Plug 'Valloric/YouCompleteMe'
-Plug 'scrooloose/nerdcommenter'
-Plug 'jiangmiao/auto-pairs'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'itchyny/lightline.vim'
-Plug 'dstein64/vim-startuptime'
-Plug 'liuchengxu/vim-which-key'
 Plug 'liuchengxu/space-vim-dark'
-Plug 'Chiel92/vim-autoformat'
+Plug 'scrooloose/nerdcommenter', {'keys': ['<Leader>cc', '<Leader>cu']}
+Plug 'Yggdroot/leaderF'
+Plug 'Yggdroot/LeaderF', {'do': ':LeaderfInstallCExtension'}
 call plug#end()
 
+" filetype
 filetype plugin indent on
-autocmd Filetype xml if getfsize(@%) > 1000000 | setlocal syntax=OFF | endif
 
-set mouse= cursorline ruler showcmd backspace=2 t_Co=256 encoding=utf-8 laststatus=2 "basic
-set expandtab tabstop=4 shiftwidth=4 softtabstop=4 autoindent "indent
-set nobackup autoread nowrap noswapfile "edit
-set hlsearch showmatch ignorecase "search
-set timeoutlen=800 "trigger time
-set undofile undodir=$HOME/.dotfiles/vim/.vimundo
+" cursor and ruler
+set cursorline ruler showcmd backspace=2 t_Co=256 encoding=utf-8 laststatus=2
+
+" tab
+set expandtab tabstop=4 shiftwidth=4 softtabstop=4 autoindent shiftround copyindent
+
+"backup
+set nobackup autoread nowrap noswapfile
+
+"search 
+set hlsearch incsearch smartcase showmatch ignorecase timeoutlen=800
 set shm+=I "close the startup window
 
+"undo, and you can undo even file reopen
+set undofile undodir=$HOME/.dotfiles/vim/vimundo
+
 let g:mapleader = " "
-nmap <Leader>j <c-w>j
-nmap <Leader>k <c-w>k
-nmap <Leader>h <c-w>h
-nmap <Leader>l <c-w>l
-nmap <Leader>w <c-w>w
-nmap <Leader>n :set invnumber <CR>
-nmap <Leader>p :set invpaste <CR>
-nmap <Leader>z <c-z>
-nmap <Leader>s :w <CR>
-nmap <Leader>x :x <CR>
-nmap <Leader>q :q <CR>
-nmap <Leader>; :AutoformatLine <CR>
-noremap <silent><Leader>/ :nohls<CR>
+nnoremap <Leader>j <c-w>j
+nnoremap <Leader>k <c-w>k
+nnoremap <Leader>h <c-w>h
+nnoremap <Leader>l <c-w>l
+nnoremap <Leader>w <c-w>w
+nnoremap <Leader>n :set invnumber <CR>
+nnoremap <Leader>p :set invpaste <CR>
+nnoremap <Leader>z <c-z>
+nnoremap <Leader>s :w <CR>
+nnoremap <Leader>x :x <CR>
+nnoremap <Leader>q :q <CR>
+nnoremap <silent><Leader>/ :nohls<CR>
+nnoremap <Leader>t :%retab! <CR>
+
+" colorscheme desert
+colorscheme space-vim-dark
 
 let g:lightline = {'colorscheme': 'wombat','active': {'left': [ [ 'mode', 'paste' ], [ 'readonly', 'filename', 'modified']]}}
-colorscheme space-vim-dark
-hi Comment guifg=#5C6370 ctermfg=59
-"hi Normal     ctermbg=NONE guibg=NONE
-"hi LineNr     ctermbg=NONE guibg=NONE
-"hi SignColumn ctermbg=NONE guibg=NONE
 
-let g:ycm_global_ycm_extra_conf = '~/.vim/plugged/YouCompleteMe/third_party/ycmd/.ycm_extra_conf.py'
-let g:ycm_confirm_extra_conf=0
-let g:ycm_disable_for_files_larger_than_kb = 1000
-let g:ycm_key_detailed_diagnostics = ''
-set completeopt=menu,menuone
-let g:ycm_min_num_identifier_candidate_chars = 2
-let g:ycm_collect_identifiers_from_comments_and_strings = 1
-let g:ycm_complete_in_strings=1
-let g:ycm_add_preview_to_completeopt = 0
-let g:ycm_show_diagnostics_ui = 0
-highlight PMenu ctermfg=0 ctermbg=242 guifg=black guibg=darkgrey
-highlight PMenuSel ctermfg=242 ctermbg=8 guifg=darkgrey guibg=black
+" LeaderF 
+let g:Lf_WindowPosition = 'popup'
+let g:Lf_ShortcutF = "<leader>fe"
+nnoremap <leader>ff :LeaderfFunction<cr>
+nnoremap <leader>fm :LeaderfMru<cr>
+nnoremap <leader>ft :LeaderfBufTag<cr>
+nnoremap <leader>fs :LeaderfSelf<cr>
+nnoremap <leader>fl :LeaderfLine<cr>
+nnoremap <leader>fb :LeaderfBuffer<cr>
+nnoremap <leader>fw :LeaderfWindow<cr>
+
+" NerdCommenter 
+let g:NERDSpaceDelims = 1  " add space 
+
+" coc-vim 
+let g:coc_global_extensions = ['coc-python']
+set updatetime=300
+set signcolumn=yes
+nmap <silent><nowait> [g <Plug>(coc-diagnostic-prev)
+nmap <silent><nowait> ]g <Plug>(coc-diagnostic-next)
+nmap <silent> <leader>cf  <Plug>(coc-format)
+autocmd CursorHold * silent call CocActionAsync('highlight')
+inoremap <silent><expr> <TAB> coc#pum#visible() ? coc#pum#next(1):CheckBackspace() ? "\<Tab>":coc#refresh()

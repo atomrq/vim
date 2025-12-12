@@ -1,0 +1,18 @@
+{
+  "pyright.enable": true,
+  "pyright.disableDiagnostics": true,
+  
+  "python.analysis.autoSearchPaths": true,
+  "python.analysis.diagnosticMode": "openFiles",
+
+  // noselet mode: <tab> select works well
+  "suggest.noselect": true, 
+
+  // format 
+  "python.formatting.provider": "black",
+  "editor.formatOnSave": false,
+  "python.formatting.blackArgs": [
+    "--line-length",
+    "88"
+  ],
+}
